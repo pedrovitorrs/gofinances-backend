@@ -1,11 +1,8 @@
-version: "2"
-sources:
+version: "1"
+packages:
   - name: "sqlc"
-    type: "sql"
-    dir: "./internal/api/v1/repository/sqlc"
-    queries:
-      "./pkg/database/queries/*.sql":
-        output: "./domain/models/"
+    path: "./internal/api/v1/repository/sqlc"
+    queries: "./pkg/database/queries/"
     schema: "./pkg/database/migrations/"
     engine: "postgresql"
     emit_json_tags: true

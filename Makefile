@@ -14,7 +14,7 @@ test:
 	go test -v -cover ./...
 
 server:
-	go run main.go
+	go run cmd/server/main.go
 
 sqlc-gen:
 	docker run --rm -v $$(pwd):/src -w /src kjconroy/sqlc generate

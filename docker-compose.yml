@@ -29,4 +29,3 @@ networks:
   backend:
 volumes:
   postgresdata:
-  redisdata:

@@ -1,12 +1,21 @@
-version: "1"
-packages:
-  - name: "sqlc"
-    path: "./internal/api/v1/repository/sqlc"
-    queries: "./pkg/database/queries/"
-    schema: "./pkg/database/migrations/"
-    engine: "postgresql"
+version: "2"
+settings:
+  schema: "./pkg/database/migrations/"
+  engine: "postgresql"
+  emit_json_tags: true
+  emit_prepared_queries: false
+  emit_interface: true
+  emit_exact_table_names: false
+  emit_empty_slices: true
+generates:
+  models:
+    output: "./internal/domain/models"
+    type: go
+    package: models
     emit_json_tags: true
     emit_prepared_queries: false
     emit_interface: true
     emit_exact_table_names: false
     emit_empty_slices: true
+    queries:
+      - ./pkg/database/queries/*.sql

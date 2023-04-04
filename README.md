@@ -52,7 +52,7 @@ docker-compose up -d
 #### Environment Variables
 
 * `DB_DRIVER` - Protocolo de comunicação com o banco de dados. ex: "postgres", "mysql"
-* `DB_SOURCE` - URI de conexão direta ao MongoDB.
+* `DB_SOURCE` - URI de conexão direta ao banco de dados.
 * `SERVER_ADDRESS` - Endereço da máquina vinculada ao banco de dados.
 
 ## Authors

@@ -6,14 +6,8 @@ Esta é uma simples API para projeto financeiro utilizando Golang, Postgres e JW
 
 Para instalar as dependências clone o projeto e execute o seguinte comando dentro da pasta.
 
-```shell
-yarn
 ```
-
-logo após execute o sistema:
-
-```
-yarn start:dev
+make server
 ```
 
 ### Pré-requisitos
@@ -52,24 +46,14 @@ http://localhost:<API_PORT>/api/docs
 O projeto já possui um docker-compose configurado, conseguirá executar o projeto somente executando o código:
 
 ```shell
-docker-compose up
+docker-compose up -d
 ```
 
 #### Environment Variables
 
-* `NODE_ENV` - Ambiente de desenvolvimento.
-* `DATABASE_NAME` - Nome da base de dados.
-* `DATABASE_USERNAME` - Usuario de acesso ao banco de dados.
-* `DATABASE_PASSWORD` - Senha de acesso ao banco de dados.
-* `DATABASE_HOST` - Endereço da máquina vinculada ao banco de dados.
-* `DATABASE_DIALECT` - Protocolo de comunicação com o banco de dados. ex: "postgres", "mysql"
-* `APP_PORT` - Porta da aplicação.
-* `JWT_SECRET` - Chave para criptografia.
-* `TOKENTIME` - Tempo de expiração do token de acesso.
-* `DATABASE_CONNECTION_STRING` - URI de conexão direta com o banco de dados
-* `MONGO_URI` - URI de conexão direta ao MongoDB
-* `REDIS_HOST` - Endereço da máquina vinculada ao banco de dados.
-* `REDIS_PORT` - Porta habilitada da máquina vinculada ao banco de dados.
+* `DB_DRIVER` - Protocolo de comunicação com o banco de dados. ex: "postgres", "mysql"
+* `DB_SOURCE` - URI de conexão direta ao MongoDB.
+* `SERVER_ADDRESS` - Endereço da máquina vinculada ao banco de dados.
 
 ## Authors
 
@@ -77,8 +61,7 @@ docker-compose up
 
 ## Como contribuir
 
-Esteja sempre atento à criação de novas branches, padronização de commits e comentários em código
-para que possamos melhorar sua mantenabilidade.
+Esteja sempre atento à criação de novas branches, padronização de commits e comentários em código para que possamos melhorar sua mantenabilidade.
 
 
 ## instalar go-Migrate

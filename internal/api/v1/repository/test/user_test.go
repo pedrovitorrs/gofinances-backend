@@ -4,15 +4,16 @@ import (
 	"context"
 	"testing"
 
+	helper "github.com/pedrovitorrs/gofinances-backend/internal/api/v1/helpers"
 	repository "github.com/pedrovitorrs/gofinances-backend/internal/api/v1/repository/sqlc"
 	"github.com/stretchr/testify/require"
 )
 
 func createRandomUser(t *testing.T) repository.User {
 	arg := repository.CreateUserParams{
-		Username: "test",
-		Password: "123456",
-		Email:    "teste@gmail.com",
+		Username: helper.RandomString(6),
+		Password: helper.RandomString(12),
+		Email:    helper.RandomEmail(8),
 	}
 
 	user, err := testQueries.CreateUser(context.Background(), arg)

@@ -22,7 +22,7 @@ func TestMain(m *testing.M) {
 	if err != nil {
 		log.Fatal("cannot connect to db: ", err)
 	}
-	log.Print("teste")
+
 	testQueries = db.New(conn)
 	os.Exit(m.Run())
 }

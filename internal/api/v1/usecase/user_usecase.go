@@ -6,12 +6,13 @@ import (
 	"crypto/sha512"
 	"time"
 
+	request "github.com/pedrovitorrs/gofinances-backend/internal/api/v1/dto/request"
 	db "github.com/pedrovitorrs/gofinances-backend/internal/api/v1/repository/sqlc"
 	"golang.org/x/crypto/bcrypt"
 )
 
 type IUserUseCase interface {
-	Store(contxt context.Context, user *db.User) (err error)
+	Store(contxt context.Context, user request.CreateUserRequest) (_ db.User, err error)
 }
 
 type userUseCase struct {
@@ -27,7 +28,7 @@ func NewUserUseCase(store *db.SQLStore, timeout time.Duration) *userUseCase {
 	}
 }
 
-func (uc *userUseCase) Store(contxt context.Context, user *db.User) (err error) {
+func (uc *userUseCase) Store(contxt context.Context, user request.CreateUserRequest) (userCreated db.User, err error) {
 	ctx, cancel := context.WithTimeout(contxt, uc.contextTimeout)
 	defer cancel()
 
@@ -43,7 +44,5 @@ func (uc *userUseCase) Store(contxt context.Context, user *db.User) (err error) 
 		Email:    user.Email,
 	}
 
-	userCreated, err := uc.store.CreateUser(ctx, arg)
-	user = &userCreated
-	return
+	return uc.store.CreateUser(ctx, arg)
 }

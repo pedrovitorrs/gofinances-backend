@@ -62,9 +62,3 @@ docker-compose up -d
 ## Como contribuir
 
 Esteja sempre atento à criação de novas branches, padronização de commits e comentários em código para que possamos melhorar sua mantenabilidade.
-
-
-## instalar go-Migrate
-curl -L https://github.com/golang-migrate/migrate/releases/download/v4.15.2/migrate.linux-amd64.tar.gz | tar xvz
-
-mv migrate $GOPATH/bin/migrate

@@ -11,9 +11,12 @@ type GoMiddleware struct {
 
 // CORS will handle the CORS middleware
 func (m *GoMiddleware) CORS(next echo.HandlerFunc) echo.HandlerFunc {
-	return func(c echo.Context) error {
-		c.Response().Header().Set("Access-Control-Allow-Origin", "*")
-		return next(c)
+	return func(context echo.Context) error {
+		context.Response().Header().Set("Access-Control-Allow-Origin", "*")
+		context.Response().Header().Set("Access-Control-Allow-Credentials", "true")
+		context.Response().Header().Set("Access-Control-Allow-Headers", "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With")
+		context.Response().Header().Set("Access-Control-Allow-Methods", "POST, DELETE, GET, PUT")
+		return next(context)
 	}
 }
 

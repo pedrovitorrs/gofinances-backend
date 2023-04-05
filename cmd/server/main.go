@@ -4,10 +4,13 @@ import (
 	"database/sql"
 	"log"
 
-	_ "github.com/lib/pq"
+	"time"
 
 	"github.com/labstack/echo"
+	_ "github.com/lib/pq"
+	handlers "github.com/pedrovitorrs/gofinances-backend/internal/api/v1/handlers"
 	db "github.com/pedrovitorrs/gofinances-backend/internal/api/v1/repository/sqlc"
+	usecase "github.com/pedrovitorrs/gofinances-backend/internal/api/v1/usecase"
 	httpMiddleware "github.com/pedrovitorrs/gofinances-backend/pkg/web/middlewares"
 	"github.com/spf13/viper"
 )
@@ -34,7 +37,7 @@ func main() {
 		log.Fatal("cannot connect to db: ", err)
 	}
 
-	db.NewStore(conn)
+	store := db.NewStore(conn)
 
 	if err != nil {
 		log.Fatal(err)
@@ -43,6 +46,11 @@ func main() {
 	e := echo.New()
 	middL := httpMiddleware.InitMiddleware()
 	e.Use(middL.CORS)
+
+	timeoutContext := time.Duration(viper.GetInt("context.timeout")) * time.Second
+
+	userUseCase := usecase.NewUserUseCase(store, timeoutContext)
+	handlers.NewUserHandler(e, userUseCase)
 
 	log.Fatal(e.Start(viper.GetString("server.address")))
 }

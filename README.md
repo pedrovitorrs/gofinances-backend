@@ -22,7 +22,7 @@ O projeto faz uso de banco de dados Postgres, caso o banco estiver local deverá
 
 * [Postgres](https://www.postgresql.org/download/)
 
-### Usage
+## Usage
 
 #### Documentation
 

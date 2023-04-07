@@ -24,11 +24,9 @@ O projeto faz uso de banco de dados Postgres, caso o banco estiver local deverá
 
 ## Usage
 
-#### Documentation
+#### Documentação
 
-Gerar documentação de API para ambiente de desenvolvimento.
-
-Gerar a documentação da API:
+Gerar a documentação da API para ambiente de desenvolvimento:
 
 ```shell
 make doc-gen

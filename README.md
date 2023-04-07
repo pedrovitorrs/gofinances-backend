@@ -31,14 +31,13 @@ Generate API documentation for development environment
 Gerar a documentação da API
 
 ```shell
-// or npm run start:docs
-yarn start:docs
+make doc-gen
 ```
 
 Access documentation for browser
 
 ```shell
-http://localhost:<API_PORT>/api/docs
+http://localhost:<API_PORT>/swagger/index.html
 ```
 
 #### Compose Project

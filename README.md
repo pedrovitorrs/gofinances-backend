@@ -26,15 +26,15 @@ O projeto faz uso de banco de dados Postgres, caso o banco estiver local deverá
 
 #### Documentation
 
-Generate API documentation for development environment
+Gerar documentação de API para ambiente de desenvolvimento.
 
-Gerar a documentação da API
+Gerar a documentação da API:
 
 ```shell
 make doc-gen
 ```
 
-Access documentation for browser
+Access documentation for browser:
 
 ```shell
 http://localhost:<API_PORT>/swagger/index.html

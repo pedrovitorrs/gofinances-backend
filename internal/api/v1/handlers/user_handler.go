@@ -23,8 +23,9 @@ func NewUserHandler(e *echo.Echo, uc usecase.IUserUseCase) {
 	handler := &UserHandler{
 		UUsecase: uc,
 	}
+	group := e.Group("/api/v1")
 	// e.GET("/articles", handler.FetchArticle)
-	e.POST("/users", handler.Store)
+	group.POST("/users", handler.Store)
 	// e.GET("/articles/:id", handler.GetByID)
 	// e.DELETE("/articles/:id", handler.Delete)
 }

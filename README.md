@@ -41,14 +41,13 @@ http://localhost:<API_PORT>/swagger/index.html
 ### Estrutura de Diretorio
 
 ```shell
-.
-├── cmd                           # O diretório para os arquivos principais da aplicação
-├── config.json                   # O arquivo de configuração da aplicação
+├── cmd                           # Diretório para os arquivos principais da aplicação
+├── config.json                   # Arquivo de configuração da aplicação
 ├── docker-compose.yml            # Arquivo de configuração do Docker Compose
 ├── docs                          # Documentação da aplicação
 ├── go.mod                        # Arquivo de definição de dependências do Go
 ├── go.sum                        # Arquivo de somas de verificação de dependências do Go
-├── internal                      # O diretório principal para os arquivos internos da aplicação
+├── internal                      # Diretório principal para os arquivos internos da aplicação
 │   └── api
 │       └── v1
 │           ├── dto               # Data Transfer Objects
@@ -59,7 +58,7 @@ http://localhost:<API_PORT>/swagger/index.html
 │           │   └── test          # Testes para os repositórios
 │           └── usecase           # Casos de uso da aplicação
 ├── Makefile                      # Arquivo Make para automatizar as tarefas comuns
-├── pkg                           # O diretório para os arquivos de pacotes compartilhados
+├── pkg                           # Diretório para os arquivos de pacotes compartilhados
 │   ├── config                    # Configurações gerais da aplicação
 │   ├── database                  # Pacotes para manipulação de bancos de dados
 │   │   ├── migrations            # Diretório para as migrações do banco de dados

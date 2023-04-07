@@ -38,6 +38,66 @@ Acesse a documentação do navegador:
 http://localhost:<API_PORT>/swagger/index.html
 ```
 
+### Estrutura de Diretorio
+
+.
+├── cmd
+│   └── server
+│       └── main.go
+├── config.json
+├── docker-compose.yml
+├── docs
+│   ├── docs.go
+│   ├── swagger.json
+│   └── swagger.yaml
+├── go.mod
+├── go.sum
+├── internal
+│   └── api
+│       └── v1
+│           ├── dto
+│           │   ├── request
+│           │   │   └── createuserrequest.go
+│           │   └── response
+│           │       └── responseerror.go
+│           ├── handlers
+│           │   └── user_handler.go
+│           ├── helpers
+│           │   └── random.go
+│           ├── repository
+│           │   ├── sqlc
+│           │   │   ├── account.sql.go
+│           │   │   ├── category.sql.go
+│           │   │   ├── db.go
+│           │   │   ├── models.go
+│           │   │   ├── querier.go
+│           │   │   ├── store.go
+│           │   │   └── user.sql.go
+│           │   └── test
+│           │       ├── account_test.go
+│           │       ├── category_test.go
+│           │       ├── main_test.go
+│           │       └── user_test.go
+│           └── usecase
+│               └── user_usecase.go
+├── Makefile
+├── pkg
+│   ├── config
+│   │   └── config.go
+│   ├── database
+│   │   ├── migrations
+│   │   │   ├── 000001_create_initials_table.down.sql
+│   │   │   └── 000001_create_initials_table.up.sql
+│   │   └── queries
+│   │       ├── account.sql
+│   │       ├── category.sql
+│   │       └── user.sql
+│   └── web
+│       └── middlewares
+│           └── HttpMiddleware.go
+├── README.md
+└── sqlc.yaml
+
 #### Compose Project
 
 O projeto já possui um docker-compose configurado, conseguirá executar o projeto somente executando o código:

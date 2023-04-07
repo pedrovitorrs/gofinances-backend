@@ -38,7 +38,7 @@ Acesse a documentação do navegador:
 http://localhost:<API_PORT>/swagger/index.html
 ```
 
-### Estrutura de Diretorio
+#### Estrutura de Diretorio
 
 ```shell
 ├── cmd                           # Diretório para os arquivos principais da aplicação

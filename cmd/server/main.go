@@ -6,15 +6,31 @@ import (
 
 	"time"
 
-	"github.com/labstack/echo"
+	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 	_ "github.com/lib/pq"
+	_ "github.com/pedrovitorrs/gofinances-backend/docs"
 	handlers "github.com/pedrovitorrs/gofinances-backend/internal/api/v1/handlers"
 	db "github.com/pedrovitorrs/gofinances-backend/internal/api/v1/repository/sqlc"
 	usecase "github.com/pedrovitorrs/gofinances-backend/internal/api/v1/usecase"
 	config "github.com/pedrovitorrs/gofinances-backend/pkg/config"
-	httpMiddleware "github.com/pedrovitorrs/gofinances-backend/pkg/web/middlewares"
+	echoSwagger "github.com/swaggo/echo-swagger"
 )
 
+// @title Swagger Example API
+// @version 1.0
+// @description This is a sample server Finances server.
+// @termsOfService http://swagger.io/terms/
+
+// @contact.name API Support
+// @contact.url http://www.swagger.io/support
+// @contact.email support@swagger.io
+
+// @license.name Apache 2.0
+// @license.url http://www.apache.org/licenses/LICENSE-2.0.html
+
+// @host petstore.swagger.io
+// @BasePath /api/v1
 func main() {
 	config, err := config.LoadConfig(`config.json`)
 	if err != nil {
@@ -33,8 +49,9 @@ func main() {
 	store := db.NewStore(conn)
 
 	e := echo.New()
-	middL := httpMiddleware.InitMiddleware()
-	e.Use(middL.CORS)
+	// middL := httpMiddleware.InitMiddleware()
+	e.Use(middleware.CORS())
+	e.GET("/swagger/*", echoSwagger.WrapHandler)
 
 	timeoutContext := time.Duration(config.Context.Timeout) * time.Second
 

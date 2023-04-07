@@ -1,3 +1,5 @@
+GOPATH := $(shell go env GOPATH)
+
 createdb:
 	createdb --username=postgres --owner=postgres go_finance
 
@@ -13,10 +15,13 @@ migrationdrop:
 test:
 	go test -v -cover ./...
 
+doc-gen:
+	$(GOPATH)/bin/swag init -g /cmd/server/main.go
+
 server:
 	go run cmd/server/main.go
 
 sqlc-gen:
 	docker run --rm -v $$(pwd):/src -w /src kjconroy/sqlc generate
 
-.PHONY: createdb postgres dropdb migrateup migrationdrop test server sqlc-gen
+.PHONY: createdb postgres dropdb migrateup migrationdrop test doc-gen server sqlc-gen

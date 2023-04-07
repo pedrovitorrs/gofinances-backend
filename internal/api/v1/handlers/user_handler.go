@@ -5,10 +5,13 @@ import (
 	"net/http"
 
 	validator "github.com/go-playground/validator/v10"
-	"github.com/labstack/echo"
+	"github.com/labstack/echo/v4"
 	request "github.com/pedrovitorrs/gofinances-backend/internal/api/v1/dto/request"
 	response "github.com/pedrovitorrs/gofinances-backend/internal/api/v1/dto/response"
+	_ "github.com/pedrovitorrs/gofinances-backend/internal/api/v1/repository/sqlc"
 	usecase "github.com/pedrovitorrs/gofinances-backend/internal/api/v1/usecase"
+	_ "github.com/swaggo/swag"
+	_ "github.com/swaggo/swag/example/celler/httputil"
 )
 
 type UserHandler struct {
@@ -26,6 +29,15 @@ func NewUserHandler(e *echo.Echo, uc usecase.IUserUseCase) {
 	// e.DELETE("/articles/:id", handler.Delete)
 }
 
+// @Summary      Create a new user
+// @Description  Create a new user with the input payload
+// @Tags User
+// Accept json
+// @Produce json
+// @Param user body request.CreateUserRequest true "User Payload"
+// @Success      200  {object}  sqlc.User
+// @Failure 	 400  {object}  response.ResponseError
+// @Router       /users [post]
 func (u *UserHandler) Store(c echo.Context) (err error) {
 	var user request.CreateUserRequest
 	err = c.Bind(&user)

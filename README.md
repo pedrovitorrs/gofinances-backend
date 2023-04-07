@@ -40,63 +40,34 @@ http://localhost:<API_PORT>/swagger/index.html
 
 ### Estrutura de Diretorio
 
+```shell
 .
-├── cmd
-│   └── server
-│       └── main.go
-├── config.json
-├── docker-compose.yml
-├── docs
-│   ├── docs.go
-│   ├── swagger.json
-│   └── swagger.yaml
-├── go.mod
-├── go.sum
-├── internal
+├── cmd                           # O diretório para os arquivos principais da aplicação
+├── config.json                   # O arquivo de configuração da aplicação
+├── docker-compose.yml            # Arquivo de configuração do Docker Compose
+├── docs                          # Documentação da aplicação
+├── go.mod                        # Arquivo de definição de dependências do Go
+├── go.sum                        # Arquivo de somas de verificação de dependências do Go
+├── internal                      # O diretório principal para os arquivos internos da aplicação
 │   └── api
 │       └── v1
-│           ├── dto
-│           │   ├── request
-│           │   │   └── createuserrequest.go
-│           │   └── response
-│           │       └── responseerror.go
-│           ├── handlers
-│           │   └── user_handler.go
-│           ├── helpers
-│           │   └── random.go
-│           ├── repository
-│           │   ├── sqlc
-│           │   │   ├── account.sql.go
-│           │   │   ├── category.sql.go
-│           │   │   ├── db.go
-│           │   │   ├── models.go
-│           │   │   ├── querier.go
-│           │   │   ├── store.go
-│           │   │   └── user.sql.go
-│           │   └── test
-│           │       ├── account_test.go
-│           │       ├── category_test.go
-│           │       ├── main_test.go
-│           │       └── user_test.go
-│           └── usecase
-│               └── user_usecase.go
-├── Makefile
-├── pkg
-│   ├── config
-│   │   └── config.go
-│   ├── database
-│   │   ├── migrations
-│   │   │   ├── 000001_create_initials_table.down.sql
-│   │   │   └── 000001_create_initials_table.up.sql
-│   │   └── queries
-│   │       ├── account.sql
-│   │       ├── category.sql
-│   │       └── user.sql
-│   └── web
-│       └── middlewares
-│           └── HttpMiddleware.go
-├── README.md
-└── sqlc.yaml
+│           ├── dto               # Data Transfer Objects
+│           ├── handlers          # HTTP handlers para a API
+│           ├── helpers           # Funções auxiliares
+│           ├── repository        # Repositórios da aplicação
+│           │   ├── sqlc          # Arquivos gerados pelo SQLC
+│           │   └── test          # Testes para os repositórios
+│           └── usecase           # Casos de uso da aplicação
+├── Makefile                      # Arquivo Make para automatizar as tarefas comuns
+├── pkg                           # O diretório para os arquivos de pacotes compartilhados
+│   ├── config                    # Configurações gerais da aplicação
+│   ├── database                  # Pacotes para manipulação de bancos de dados
+│   │   ├── migrations            # Diretório para as migrações do banco de dados
+│   │   └── queries               # Arquivos de consulta SQL
+│   └── web                       # Pacotes para manipulação de HTTP
+├── README.md                     # Arquivo com informações sobre a aplicação
+└── sqlc.yaml                     # Arquivo de configuração do SQLC
+```
 
 #### Compose Project
 

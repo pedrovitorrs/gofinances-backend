@@ -34,7 +34,7 @@ Gerar a documentação da API:
 make doc-gen
 ```
 
-Access documentation for browser:
+Acesse a documentação do navegador:
 
 ```shell
 http://localhost:<API_PORT>/swagger/index.html

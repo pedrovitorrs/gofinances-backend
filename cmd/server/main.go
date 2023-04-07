@@ -37,10 +37,6 @@ func main() {
 		panic(err)
 	}
 
-	if config.Debug {
-		log.Println("Service RUN on DEBUG mode")
-	}
-
 	conn, err := sql.Open(config.Database.Driver, config.Database.Source)
 	if err != nil {
 		log.Fatal("cannot connect to db: ", err)
@@ -51,7 +47,10 @@ func main() {
 	e := echo.New()
 	// middL := httpMiddleware.InitMiddleware()
 	e.Use(middleware.CORS())
-	e.GET("/swagger/*", echoSwagger.WrapHandler)
+	if config.Debug {
+		log.Println("Service RUN on DEBUG mode")
+		e.GET("/swagger/*", echoSwagger.WrapHandler)
+	}
 
 	timeoutContext := time.Duration(config.Context.Timeout) * time.Second
 

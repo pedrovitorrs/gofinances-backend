@@ -1,13 +1,12 @@
 package handlers
 
 import (
-	"log"
 	"net/http"
 
-	validator "github.com/go-playground/validator/v10"
 	"github.com/labstack/echo/v4"
 	request "github.com/pedrovitorrs/gofinances-backend/internal/api/v1/dto/request"
 	response "github.com/pedrovitorrs/gofinances-backend/internal/api/v1/dto/response"
+	helper "github.com/pedrovitorrs/gofinances-backend/internal/api/v1/helpers"
 	_ "github.com/pedrovitorrs/gofinances-backend/internal/api/v1/repository/sqlc"
 	usecase "github.com/pedrovitorrs/gofinances-backend/internal/api/v1/usecase"
 	_ "github.com/swaggo/swag"
@@ -18,7 +17,7 @@ type UserHandler struct {
 	UUsecase usecase.IUserUseCase
 }
 
-// NewArticleHandler will initialize the articles/ resources endpoint
+// NewArticleHandler will initialize the users/ resources endpoint
 func NewUserHandler(e *echo.Echo, uc usecase.IUserUseCase) {
 	handler := &UserHandler{
 		UUsecase: uc,
@@ -47,7 +46,7 @@ func (u *UserHandler) Store(c echo.Context) (err error) {
 	}
 
 	var ok bool
-	if ok, err = isRequestValid(&user); !ok {
+	if ok, err = helper.IsValid(&user); !ok {
 		return c.JSON(http.StatusBadRequest, err.Error())
 	}
 
@@ -58,14 +57,4 @@ func (u *UserHandler) Store(c echo.Context) (err error) {
 	}
 
 	return c.JSON(http.StatusCreated, userCreated)
-}
-
-func isRequestValid(req interface{}) (bool, error) {
-	validate := validator.New()
-	err := validate.Struct(req)
-	log.Println(req)
-	if err != nil {
-		return false, err
-	}
-	return true, nil
 }

@@ -2,6 +2,36 @@
 
 Esta é uma simples API para projeto financeiro utilizando Golang, Postgres e JWT.
 
+#### Estrutura de Diretorio
+
+```shell
+├── cmd                           # Diretório para os arquivos principais da aplicação
+├── config.json                   # Arquivo de configuração da aplicação
+├── docker-compose.yml            # Arquivo de configuração do Docker Compose
+├── docs                          # Documentação da aplicação
+├── go.mod                        # Arquivo de definição de dependências do Go
+├── go.sum                        # Arquivo de somas de verificação de dependências do Go
+├── internal                      # Diretório principal para os arquivos internos da aplicação
+│   └── api
+│       └── v1
+│           ├── dto               # Data Transfer Objects
+│           ├── handlers          # HTTP handlers para a API
+│           ├── helpers           # Funções auxiliares
+│           ├── repository        # Repositórios da aplicação
+│           │   ├── sqlc          # Arquivos gerados pelo SQLC
+│           │   └── test          # Testes para os repositórios
+│           └── usecase           # Casos de uso da aplicação
+├── Makefile                      # Arquivo Make para automatizar as tarefas comuns
+├── pkg                           # Diretório para os arquivos de pacotes compartilhados
+│   ├── config                    # Configurações gerais da aplicação
+│   ├── database                  # Pacotes para manipulação de bancos de dados
+│   │   ├── migrations            # Diretório para as migrações do banco de dados
+│   │   └── queries               # Arquivos de consulta SQL
+│   └── web                       # Pacotes para manipulação de HTTP
+├── README.md                     # Arquivo com informações sobre a aplicação
+└── sqlc.yaml                     # Arquivo de configuração do SQLC
+```
+
 ## Instalação
 
 Para instalar as dependências clone o projeto e execute o seguinte comando dentro da pasta.
@@ -36,36 +66,6 @@ Acesse a documentação do navegador:
 
 ```shell
 http://localhost:<API_PORT>/swagger/index.html
-```
-
-#### Estrutura de Diretorio
-
-```shell
-├── cmd                           # Diretório para os arquivos principais da aplicação
-├── config.json                   # Arquivo de configuração da aplicação
-├── docker-compose.yml            # Arquivo de configuração do Docker Compose
-├── docs                          # Documentação da aplicação
-├── go.mod                        # Arquivo de definição de dependências do Go
-├── go.sum                        # Arquivo de somas de verificação de dependências do Go
-├── internal                      # Diretório principal para os arquivos internos da aplicação
-│   └── api
-│       └── v1
-│           ├── dto               # Data Transfer Objects
-│           ├── handlers          # HTTP handlers para a API
-│           ├── helpers           # Funções auxiliares
-│           ├── repository        # Repositórios da aplicação
-│           │   ├── sqlc          # Arquivos gerados pelo SQLC
-│           │   └── test          # Testes para os repositórios
-│           └── usecase           # Casos de uso da aplicação
-├── Makefile                      # Arquivo Make para automatizar as tarefas comuns
-├── pkg                           # Diretório para os arquivos de pacotes compartilhados
-│   ├── config                    # Configurações gerais da aplicação
-│   ├── database                  # Pacotes para manipulação de bancos de dados
-│   │   ├── migrations            # Diretório para as migrações do banco de dados
-│   │   └── queries               # Arquivos de consulta SQL
-│   └── web                       # Pacotes para manipulação de HTTP
-├── README.md                     # Arquivo com informações sobre a aplicação
-└── sqlc.yaml                     # Arquivo de configuração do SQLC
 ```
 
 #### Compose Project

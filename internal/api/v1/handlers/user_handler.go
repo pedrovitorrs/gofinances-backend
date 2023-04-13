@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"database/sql"
 	"net/http"
 	"strconv"
 
@@ -61,15 +62,15 @@ func (u *UserHandler) Store(c echo.Context) (err error) {
 }
 
 // GetByID swagger documentation
-// @Summary Get user by id
-// @Description get user by id
+// @Summary 	 Get user by id
+// @Description  Get user by id
 // @Tags User
 // @Accept  json
 // @Produce  json
 // @Param id path int true "User ID"
-// @Success 200 {object} sqlc.User
-// @Failure 400 {object} response.ResponseError
-// @Router /users/{id} [get]
+// @Success 	 200 {object} sqlc.User
+// @Failure 	 400 {object} response.ResponseError
+// @Router 		 /users/{id} [get]
 func (u *UserHandler) GetByID(c echo.Context) (err error) {
 	idParam, err := strconv.Atoi(c.Param("id"))
 
@@ -82,6 +83,9 @@ func (u *UserHandler) GetByID(c echo.Context) (err error) {
 
 	user, err := u.UUsecase.GetById(ctx, id)
 	if err != nil {
+		if err == sql.ErrNoRows {
+			return c.JSON(http.StatusNotFound, response.ResponseError{Message: err.Error()})
+		}
 		return c.JSON(http.StatusUnprocessableEntity, response.ResponseError{Message: err.Error()})
 	}
 

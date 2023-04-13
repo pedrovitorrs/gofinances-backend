@@ -74,7 +74,7 @@ paths:
     get:
       consumes:
       - application/json
-      description: get user by id
+      description: Get user by id
       parameters:
       - description: User ID
         in: path

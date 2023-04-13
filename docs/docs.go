@@ -64,7 +64,7 @@ const docTemplate = `{
         },
         "/users/{id}": {
             "get": {
-                "description": "get user by id",
+                "description": "Get user by id",
                 "consumes": [
                     "application/json"
                 ],

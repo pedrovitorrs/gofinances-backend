@@ -60,6 +60,15 @@ func (u *UserHandler) Store(c echo.Context) (err error) {
 	return c.JSON(http.StatusCreated, userCreated)
 }
 
+// GetByID swagger documentation
+// @Summary Get user by id
+// @Description get user by id
+// @Tags users
+// @Accept  json
+// @Produce  json
+// @Param id path int true "User ID"
+// @Success 200 {object} response.GetUserResponse
+// @Router /users/{id} [get]
 func (u *UserHandler) GetByID(c echo.Context) (err error) {
 	idParam, err := strconv.Atoi(c.Param("id"))
 

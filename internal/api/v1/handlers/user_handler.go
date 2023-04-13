@@ -63,11 +63,12 @@ func (u *UserHandler) Store(c echo.Context) (err error) {
 // GetByID swagger documentation
 // @Summary Get user by id
 // @Description get user by id
-// @Tags users
+// @Tags User
 // @Accept  json
 // @Produce  json
 // @Param id path int true "User ID"
-// @Success 200 {object} response.GetUserResponse
+// @Success 200 {object} sqlc.User
+// @Failure 400 {object} response.ResponseError
 // @Router /users/{id} [get]
 func (u *UserHandler) GetByID(c echo.Context) (err error) {
 	idParam, err := strconv.Atoi(c.Param("id"))

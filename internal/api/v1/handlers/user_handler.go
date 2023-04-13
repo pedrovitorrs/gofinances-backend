@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"net/http"
+	"strconv"
 
 	"github.com/labstack/echo/v4"
 	request "github.com/pedrovitorrs/gofinances-backend/internal/api/v1/dto/request"
@@ -25,7 +26,7 @@ func NewUserHandler(e *echo.Echo, uc usecase.IUserUseCase) {
 	group := e.Group("/api/v1")
 	// e.GET("/articles", handler.FetchArticle)
 	group.POST("/users", handler.Store)
-	// e.GET("/articles/:id", handler.GetByID)
+	group.GET("/users/:id", handler.GetByID)
 	// e.DELETE("/articles/:id", handler.Delete)
 }
 
@@ -57,4 +58,22 @@ func (u *UserHandler) Store(c echo.Context) (err error) {
 	}
 
 	return c.JSON(http.StatusCreated, userCreated)
+}
+
+func (u *UserHandler) GetByID(c echo.Context) (err error) {
+	idParam, err := strconv.Atoi(c.Param("id"))
+
+	if err != nil {
+		return c.JSON(http.StatusNotFound, err.Error())
+	}
+
+	id := int32(idParam)
+	ctx := c.Request().Context()
+
+	user, err := u.UUsecase.GetById(ctx, id)
+	if err != nil {
+		return c.JSON(http.StatusUnprocessableEntity, response.ResponseError{Message: err.Error()})
+	}
+
+	return c.JSON(http.StatusOK, user)
 }

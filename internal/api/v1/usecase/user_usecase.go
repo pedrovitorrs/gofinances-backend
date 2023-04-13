@@ -13,6 +13,7 @@ import (
 
 type IUserUseCase interface {
 	Store(contxt context.Context, user request.CreateUserRequest) (_ db.User, err error)
+	GetById(contxt context.Context, id int32) (_ db.User, err error)
 }
 
 type userUseCase struct {
@@ -20,7 +21,7 @@ type userUseCase struct {
 	contextTimeout time.Duration
 }
 
-// NewArticleUsecase will create new an articleUsecase object representation of domain.ArticleUsecase interface
+// NewUserUsecase will create new an UserUsecase object representation of domain.UserUsecase interface
 func NewUserUseCase(store *db.SQLStore, timeout time.Duration) *userUseCase {
 	return &userUseCase{
 		store:          store,
@@ -45,4 +46,11 @@ func (uc *userUseCase) Store(contxt context.Context, user request.CreateUserRequ
 	}
 
 	return uc.store.CreateUser(ctx, arg)
+}
+
+func (uc *userUseCase) GetById(contxt context.Context, id int32) (_ db.User, err error) {
+	ctx, cancel := context.WithTimeout(contxt, uc.contextTimeout)
+	defer cancel()
+
+	return uc.store.GetUserById(ctx, id)
 }
